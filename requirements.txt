@@ -1,0 +1,4 @@
+Flask==3.0.3
+SQLAlchemy>=2.0.31
+alembic==1.13.1
+python-dateutil==2.8.2

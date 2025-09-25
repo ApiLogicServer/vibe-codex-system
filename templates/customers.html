@@ -1,0 +1,31 @@
+{% extends "base.html" %}
+{% block content %}
+<h1>Customers</h1>
+<p>
+  <a class="button" href="{{ url_for('web.create_customer') }}">Add Customer</a>
+</p>
+<table>
+  <thead>
+    <tr>
+      <th>Name</th>
+      <th>Email</th>
+      <th>Credit Limit</th>
+      <th>Balance</th>
+      <th>Available</th>
+    </tr>
+  </thead>
+  <tbody>
+    {% for entry in customers %}
+      <tr>
+        <td>{{ entry.base.name }}</td>
+        <td>{{ entry.base.email }}</td>
+        <td>${{ '%.2f'|format(entry.base.credit_limit) }}</td>
+        <td>${{ '%.2f'|format(entry.balance) }}</td>
+        <td>${{ '%.2f'|format(entry.available_credit) }}</td>
+      </tr>
+    {% else %}
+      <tr><td colspan="5">No customers available.</td></tr>
+    {% endfor %}
+  </tbody>
+</table>
+{% endblock %}

@@ -1,0 +1,33 @@
+{% extends "base.html" %}
+{% block content %}
+<h1>Create Order</h1>
+<form method="post">
+  <label for="customer_id">Customer</label>
+  <select name="customer_id" id="customer_id" required>
+    <option value="">Select customer</option>
+    {% for customer in customers %}
+      <option value="{{ customer.id }}">{{ customer.name }} (limit ${{ '%.2f'|format(customer.credit_limit) }})</option>
+    {% endfor %}
+  </select>
+
+  <label for="notes">Notes</label>
+  <textarea name="notes" id="notes" rows="3"></textarea>
+
+  <h2>Items</h2>
+  {% for idx in range(3) %}
+    <div>
+      <label>Product</label>
+      <select name="product_id">
+        <option value="">Select product</option>
+        {% for product in products %}
+          <option value="{{ product.id }}">{{ product.name }} (${{ '%.2f'|format(product.unit_price) }})</option>
+        {% endfor %}
+      </select>
+      <label>Quantity</label>
+      <input type="number" name="quantity" min="0" value="0">
+    </div>
+  {% endfor %}
+
+  <button type="submit">Create Order</button>
+</form>
+{% endblock %}

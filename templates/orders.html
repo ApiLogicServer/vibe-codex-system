@@ -1,0 +1,34 @@
+{% extends "base.html" %}
+{% block content %}
+<h1>Orders</h1>
+<table>
+  <thead>
+    <tr>
+      <th>ID</th>
+      <th>Customer</th>
+      <th>Total</th>
+      <th>Created</th>
+      <th>Shipped</th>
+    </tr>
+  </thead>
+  <tbody>
+    {% for order in orders %}
+      <tr>
+        <td><a href="{{ url_for('web.order_detail', order_id=order.id) }}">#{{ order.id }}</a></td>
+        <td>{{ order.customer.name }}</td>
+        <td>${{ '%.2f'|format(order.amount_total) }}</td>
+        <td>{{ order.date_created.strftime('%Y-%m-%d %H:%M') }}</td>
+        <td>
+          {% if order.date_shipped %}
+            {{ order.date_shipped.strftime('%Y-%m-%d %H:%M') }}
+          {% else %}
+            Pending
+          {% endif %}
+        </td>
+      </tr>
+    {% else %}
+      <tr><td colspan="5">No orders yet.</td></tr>
+    {% endfor %}
+  </tbody>
+</table>
+{% endblock %}

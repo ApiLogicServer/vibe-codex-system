@@ -1,0 +1,29 @@
+{% extends "base.html" %}
+{% block content %}
+<h1>Products</h1>
+<p>
+  <a class="button" href="{{ url_for('web.create_product') }}">Add Product</a>
+</p>
+<table>
+  <thead>
+    <tr>
+      <th>SKU</th>
+      <th>Name</th>
+      <th>Unit Price</th>
+      <th>Status</th>
+    </tr>
+  </thead>
+  <tbody>
+    {% for product in products %}
+      <tr>
+        <td>{{ product.sku }}</td>
+        <td>{{ product.name }}</td>
+        <td>${{ '%.2f'|format(product.unit_price) }}</td>
+        <td>{{ 'Active' if product.is_active else 'Inactive' }}</td>
+      </tr>
+    {% else %}
+      <tr><td colspan="4">No products available.</td></tr>
+    {% endfor %}
+  </tbody>
+</table>
+{% endblock %}
