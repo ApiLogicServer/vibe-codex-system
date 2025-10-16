@@ -1,3 +1,12 @@
+
+This was created using Copilot 'vibe' in a standard fashion (no GenAI-Logic, tho the `basic_demo` shows the same project using GenAI-Logic).  
+
+This readme  (except for this intro) was created by CoPilot, and is a good record of the project creation and initial iteration.
+
+
+<br>
+
+
 # Order Management System
 
 A minimal Python + SQLite system exposing REST and HTML interfaces for customers, orders, items, and products. Core business logic covers credit checking, order totals, and shipping integration to a Kafka topic (emulated via append-only log).
